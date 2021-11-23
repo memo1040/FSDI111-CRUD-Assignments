@@ -76,7 +76,7 @@ def deactivate_user(pk):
 
 @app.route("/users/<int:pk>/vehicles", methods=["GET"])
 def get_vehicles_by_user_id(pk):
-    vehicles = vehicle.scan(pk)
+    vehicles = vehicle.get_vehicles_by_user_id(pk)
     out = {
         "ok": True,
         "message": "Success",

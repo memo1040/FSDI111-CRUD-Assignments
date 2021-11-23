@@ -35,16 +35,23 @@ def insert(license_plate, v_type, color, parking_spot_no, description, user_id):
     cursor.close()
     return last_row_id
 
-def scan(pk):
+def get_vehicles_by_user_id(pk):
     cursor = get_db().execute(
-        "SELECT * FROM vehicle WHERE user_id=?", (pk))
+        "SELECT * FROM vehicle WHERE user_id=?", (pk, ))
+    results = cursor.fetchall()
+    cursor.close()
+    return output_formatter(results)
+
+def scan():
+    cursor = get_db().execute(
+        "SELECT * FROM vehicle", ())
     results = cursor.fetchall()
     cursor.close()
     return output_formatter(results)
 
 def read(pk):
     cursor = get_db().execute(
-        "SELECT * FROM vehicle WHERE user_id=?", (pk,))
+        "SELECT * FROM vehicle WHERE user_id=?", (pk, ))
     results = cursor.fetchall()
     cursor.close()
     return output_formatter(results)
